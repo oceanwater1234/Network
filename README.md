@@ -1,2 +1,2 @@
 # Network
-TemaLog NetWork Class
+TeamLog NetWork Class
