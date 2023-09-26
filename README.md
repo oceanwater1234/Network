@@ -1,2 +1,2 @@
 # Network
-TeamLog NetWork Class
+TeamLog Network Class
