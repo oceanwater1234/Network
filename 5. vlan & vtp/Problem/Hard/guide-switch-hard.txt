@@ -1,0 +1,24 @@
+1) PC의 IP는 각 네트워크에서 사용 가능한 첫번째 주소를 작성해주세요.
+2) 각 pc의 게이트 웨이는 네트워크에서 사용 가능한 마지막 주소를 작성해주세요.
+
+3) PC를 제외한 모든 장비들의 이름과 hostname이 일치해야합니다.
+
+4) TeamLog Sector에 속한 SW2에 VTP mode를 Server로 설정해주세요.
+   - 나머지 스위치들은 전부 VTP mode를 Client로 설정해주세요.
+
+5) TeamLog Sector에 속한 스위치들의 VTP Domain은 teamlog.kr로 설정해주세요.
+6) TeamLog Sector에 속한 스위치들의 VTP Password는 1234로 설정해주세요. 
+
+7) Router에서 가상 인터페이스를 생성 할 때 가상 인터페이스는 vlan 넘버와 동일하게 작성합니다. 
+ex) vlan 1000 -> interface g0/0.1000 
+
+8) Routing을 진행 할 때는 RIP 프로토콜을 사용해서 Routing을 진행 해주세요.
+9) RIP의 버전은 2로 설정하고 Routing Table에 축약되지 않게 no auto-summary 설정을 진행 해주세요.
+
+10) Unifox Sector에 속한 SW11에 VTP mode를 Server로 설정해주세요.
+   - 나머지 스위치들은 전부 VTP mode를 Client로 설정해주세요.
+
+11) Unifox Sector에 속한 스위치들의 VTP Domain은 unifox.kr로 설정해주세요.
+12) Unifox Sector에 속한 스위치들의 VTP Password는 1234로 설정해주세요. 
+
+

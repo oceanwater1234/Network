@@ -1,0 +1,33 @@
+1) PC의 IP는 각 네트워크에서 사용 가능한 첫번째 주소를 작성해주세요.
+2) 각 pc의 게이트 웨이는 네트워크에서 사용 가능한 마지막 주소를 작성해주세요.
+
+3) PC를 제외한 모든 장비들의 이름과 hostname이 일치해야합니다.
+
+4) Router에서 가상 인터페이스를 생성 할 때 가상 인터페이스는 vlan 넘버와 동일하게 작성합니다. 
+ex) vlan 1000 -> interface g0/0.1000 
+
+5) Router teamlog와 Router layer7간의 pap 프로토콜을 적용 시켜주세요.
+- teamlog의 username은 teamlog로 설정해주세요.
+- teamlog의 password는 sunrin로 설정해주세요.
+
+- layer7의 username은 layer7로 설정해주세요.
+- layer7의 username은 nirnus로 설정해주세요.
+
+6) Router emotion과 Router layer7간의 chap 프로토콜을 적용 시켜주세요.
+- layer7의 username은 layer7로 설정해주세요.
+- layer7의 username은 nirnus로 설정해주세요.
+
+
+- emotion의 username은 emotion로 설정해주세요.
+- emotion의 username은 nirnus로 설정해주세요.
+
+7) router sector에 해당하는 네트워크들은 모두 rip을 사용하여 라우팅을 진행해주세요.
+- rip의 버전은 2로 설정해주세요.
+- rip에서 라우팅 테이블에 축약되지 않게 no-auto summary 설정해주세요.
+
+8) ospf sector에 해당하는 네트워크들은 모두 ospf을 사용하여 라우팅을 진행해주세요.
+- ospf으로 라우팅을 진행 할 때 process id는 5로 설정해주세요.
+
+9) 토폴로지를 다 완성 후 각 PC끼리 패킷을 날려 통신이 잘되는지 확인해주세요.
+
+
