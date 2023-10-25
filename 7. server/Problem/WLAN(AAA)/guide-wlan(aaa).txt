@@ -1,0 +1,21 @@
+1) PC를 제외한 나머지 무선 렌 ,  라우터 , 서버에 주어진 IP를 할당 해주세요.
+
+2) 서버에서 AAA 설정을 진행 해주세요.
+- AAA의 Service를 ON으로 설정을 해주세요.
+- Client Name은 TeamLog로 설정을 해주세요.
+- Client IP는 10.0.0.1로 진행 해주세요. 
+- Secret Key는 Nefus로 설정해주세요.
+
+- AAA의 username은 sunrin으로 설정해주세요.
+- AAA의 password은 sunrin으로 설정해주세요.
+
+
+3) WR0에서 DHCP를 통해서 PC에게 IP를 부여해주세요.
+- DHCP로 부여할 네트워크 주소는 192.168.10.0/28 입니다.
+- PC에게 부여할 Default Gateway는 네트워크의 마지막 주소를 부여해주세요.
+
+- WR0의 보안 설정은 WPA2 Enterprise로 설정해주세요.
+- Radius Server의 주소는 Server0의 주소로 설정해주세요.
+- Secret Key는 Server0에서 설정으로 진행하세요.
+
+4) PC에서 WR0에 접속 할 때 SSID를 Default로 진행해주세요.
