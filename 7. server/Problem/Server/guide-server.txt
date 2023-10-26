@@ -1,0 +1,145 @@
+------etc------
+1) PC와 서버를 제외한 모든 display 이름과 hostname을 일치시켜 주세요.
+
+
+
+------IP------
+1) 서버의 IP는 토폴로지에 주어진 IP로 설정해 주세요.
+2) 라우터의 IP는 토폴로지에 주어진 IP로 설정해 주세요.
+3) 서버와 PC의 게이트 웨이 주소는 토폴로지에 주어진 네트워크에 마지막 주소를 사용해 주세요.
+4) NTP , SYSLOG 서버 , PC들은 전부 DHCP를 통해서 IP를 할당해 주세요.
+
+
+
+------Routing------
+1) RIP sector에 해당하는 네트워크는 모두 RIP로 라우팅을 진행해 주세요.
+    RIP의 버전은 2로 설정해주고 라우팅 테이블에 축약되지 않게 설정해 주세요.
+
+2) EIGRP Sector에 해당하는 네트워크는 모두 EIGRP로 라우팅을 진행해 주세요.
+    AS number는 71로 설정해 주세요.
+
+3) 재분배를 실시 할 때 EIGRP 의 메트릭 값은 차례대로 Bandwith(1544) , Delay(2000) , Reliability(255) , Effective(255) , MTU(1)로 설정해 주세요.
+
+
+
+------VLAN------
+1) SW0에서 VLAN 10 / Name : Math , VLAN 20 / Name : Korean , VLAN 30 / Name : English을 생성해 주세요.
+- DNS , HTTP 서버에 VLAN 10을 access해 주세요. 
+- DHCP 서버에 VLAN 20을 access해 주세요. 
+- AAA 서버에 VLAN 30을 access해 주세요. 
+
+2) SW1에서 VLAN 40 / Name : Red , VLAN 50 / Name : BLUE , VLAN 60 / Name : Green을 생성해 주세요.
+- PC0에 VLAN 40을 access해 주세요. 
+- PC1에 VLAN 50을 access해 주세요. 
+- PC2에 VLAN 60을 access해 주세요. 
+
+
+------Inter-VLAN------
+1) Inter-VLAN을 설정 할 때 가상 인터페이스를 VLAN Number와 동일하게 생성해 주세요.
+ex) VLAN  Number 99 > interface g0/0.99
+
+------VTP------
+1) VTP를 SW1 , SW2 , SW3에 설정해주세요.
+2) SW1을 VTP mode를 Server로 설정해 주세요.
+3) SW2 , SW3을 VTP mode를 Client로 설정해 주세요.
+
+4) VTP Domain은 www.jeju.com으로 설정해 주세요. 
+5) VTP Password는 1234로 설정해 주세요.
+
+
+
+------DNS , HTTP------
+1) DNS , HTTP 서버에서 DNS와 HTTP 서버의 설정을 진행합니다. 
+2) Domain을 teamlog.kr로 설정해 주세요.
+3) DNS 서버의 주소는 DNS , HTTP 서버의 주소로 설정을 진행합니다. 
+
+
+
+------NTP------
+1) NTP의 설정은 NTP , SYSLOG 서버에서 진행합니다. 
+2) RouterSub의 시간을 NTP , SYSLOG서버의 시간을 동기화 시켜주세요. 
+
+
+
+------SYSLOG------
+1) SYSLOG의 설정은 NTP , SYSLOG 서버에서 진행합니다. 
+2) RouterSub의 SYSLOG들을 NTP , SYSLOG 서버의 SYSLOG Serverisce창에 뜨게 설정을 진행해 주세요.
+
+
+
+------AAA------
+1) AAA의 설정은 AAA 서버에서 진행합니다.
+2) Radius Port는 1645로 설정해 주세요.
+
+3) AAA 서버에서 Radius 서버를 생성해 주세요. 
+- Client Name을 RouterRadius로 설정해 주세요.
+- Client IP를 RouterRadius의 s0/1/1주소로 설정해 주세요.
+- Secret 은 RD로 설정해주세요.
+
+4) AAA 서버에서 Radius 서버의 user의 정보를 생성합니다. 
+- username : RD / password : DR
+
+5) AAA 서버에서 Tacacs 서버를 생성해주세요. 
+- Client Name을 RouterTacacs로 설정해주세요.
+- Client IP를 RouterTacacs의 s0/0/0주소로 설정해 주세요.
+- Secret 은 TC로 설정해주세요.
+
+5) AAA 서버에서 Tacacs 서버의 user의 정보를 생성합니다. 
+- username : TC / password : CT
+
+
+
+------DHCP------
+1. DHCP 서버에서 DHCP 설정을 진행합니다.
+
+2. PC0의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Red로 설정해줍니다.
+- Default Gateway는 10.128.129.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+- DNS Server의 주소는 DNS , HTTP Server의 주소를 사용해 주세요.
+- Start IP Address는 PC0의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+3. PC1의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Blue로 설정해줍니다.
+- Default Gateway는 10.128.130.0/24 네트워크에서 사용 가능한 마지막 주소를 작성해줍니다.
+- DNS Server의 주소는 DNS , HTTP Server의 주소를 사용해 주세요.
+- Start IP Address는 PC1의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+4. PC2의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Green로 설정해줍니다.
+- Default Gateway는 10.128.131.0/24 네트워크에서 사용 가능한 마지막 주소를 작성해줍니다.
+- DNS Server의 주소는 DNS , HTTP Server의 주소를 사용해 주세요.
+- Start IP Address는 PC2의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+5. NTP , SYSLOG 서버의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Server로 설정해줍니다.
+- Default Gateway는 192.168.3.0/29 네트워크에서 사용 가능한 마지막 주소를 작성해 줍니다.
+- Start IP Address는 NTP , SYSLOG 서버의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+
+
+------DHCP(Router)------
+1. RouterDHCP에서 Rotuer로 PC3과 PC4의 DHCP 설정을 통해서 IP를 부여해줍니다.
+2. DHCP의 Pool Name은 DHCPpc로 설정해줍니다.
+3. 123.123.123.2 ~ 123.123.123.4대역의 IP는 제외시켜줍니다.
+4. DNS의 주소는 DNS , HTTP 서버의 주소로 설정해 줍니다.
+5. Default Gateway의 주소는 123.123.123.0/29 네트워크 대역에서 사용 가능한 마지막 주소를 작성해줍니다. 
+
+------PAP------
+1. RouterPAP과 RouterTacacs에서 PAP 설정을 진행합니다. 
+   진행하는 라우터의 인터페이스는 s0/0/0입니다.
+
+2. RouterPAP의 username은 RouterTacacs로 password는 pap로 설정해주세요.
+3. RouterTacacs의 username은 RouterPAP으로 password는 PAP로 설정해주세요.
+
+5. Default Gateway의 주소는 123.123.123.0/29 네트워크 대역에서 사용 가능한 마지막 주소를 작성해줍니다. 
+
+------CHAP------
+1. RouterCHAP과 RouterRadius에서 CHAP 설정을 진행합니다. 
+   진행하는 라우터의 인터페이스는 s0/0/0입니다.
+
+2. RouterCHAP의 username은 RouterRadius로 password는 PHAC로 설정해주세요.
+3. RouterRadius의 username은 RouterCHAP으로 password는 PHAC로 설정해주세요.
