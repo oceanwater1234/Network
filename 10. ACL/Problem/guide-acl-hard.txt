@@ -4,10 +4,10 @@
 
 
 ------IP------
-1) 서버와 PC0 , PC1 , PC2는 토폴로지에 주어진 IP로 설정해 주세요.
-2) 라우터의 IP는 토폴로지에 주어진 IP로 설정해 주세요.(작성되어 있지 않는 라우터의 주소는 해당 네트워크의 마지막 주소를 사용해주세요.)
+1) Server0과 PC1 , PC2 , PC6 , PC7는 토폴로지에 주어진 IP로 설정해 주세요.
+2) 라우터의 IP는 토폴로지에 주어진 IP로 설정해 주세요.
 3) 서버와 PC의 게이트 웨이 주소는 토폴로지에 주어진 네트워크에 마지막 주소를 사용해 주세요.
-4) PC3 , PC4 , PC5 , PC6의 IP는 Server0에서 DHCP를 통해 IP를 할당해 주세요.
+4) PC3 , PC4 , PC5  IP는 Server0에서 DHCP를 통해 IP를 할당해 주세요.
 
 
 
@@ -25,47 +25,56 @@
 1. Server0 에서 DHCP 설정을 진행합니다.
 
 2. PC3의 IP를 할당할 DHCP를 설정해 줍니다.
-- Pool Name을 Discord로 설정해줍니다.
-- DNS 서버의 주소는 
-- Default Gateway는 123.123.123.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
-- Start IP Address는 PC1의 토폴로지에 주어진 IP를 사용해 주세요.
+- Pool Name을 Red로 설정해줍니다.
+- DNS 서버의 주소는 Server0의 IP주소를 사용합니다. 
+- Default Gateway는 30.0.0.0/29 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+- Start IP Address는 PC3의 토폴로지에 주어진 IP를 사용해 주세요.
 - DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
 
 3. PC4의 IP를 할당할 DHCP를 설정해 줍니다.
-- Pool Name을 Email로 설정해줍니다.
-- Default Gateway는 123.123.124.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
-- Start IP Address는 PC2의 토폴로지에 주어진 IP를 사용해 주세요.
+- Pool Name을 Blue로 설정해줍니다.
+- DNS 서버의 주소는 Server0의 IP주소를 사용합니다. 
+- Default Gateway는 40.0.0.0/29 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+- Start IP Address는 PC3의 토폴로지에 주어진 IP를 사용해 주세요.
 - DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
 
-4. PC5와 PC6의 IP를 할당할 DHCP를 설정해 줍니다.
-- Pool Name을 Telegram로 설정해줍니다.
-- Default Gateway는 123.123.125.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+4. PC5의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Green로 설정해줍니다.
+- DNS 서버의 주소는 Server0의 IP주소를 사용합니다.
+- Default Gateway는 50.0.0.0/29 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
 - Start IP Address는 PC3의 토폴로지에 주어진 IP를 사용해 주세요.
 - DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
 
 
 
 ------VLAN------
-1) SW2에서 VLAN 10 , Name instagram을 생성합니다.
-2) SW2에서 VLAN 20 , Name Facebook을 생성합니다.
+1) SW1에서 VLAN 10 , Name Purple을 생성합니다.
+2) SW1에서 VLAN 20 , Name Black을 생성합니다.
 
-3) SW3에서 VLAN 30 , Name Discord를 생성합니다.
-4) SW3에서 VLAN 40 , Name Email를 생성합니다.
-5) SW3에서 VLAN 50 , Name Telegram를 생성합니다.
+3) SW2에서 VLAN 30 , Name Red를 생성합니다.
+4) SW2에서 VLAN 40 , Name Blue를 생성합니다.
+5) SW2에서 VLAN 50 , Name Green를 생성합니다.
 
-6) PC1에 VLAN 10을 적용시켜 주세요.
-7) PC2에 VLAN 20을 적용시켜 주세요.
-8) PC3에 VLAN 30을 적용시켜 주세요.
-9) PC4에 VLAN 40을 적용시켜 주세요.
+6) PC1과 Server0에 VLAN 40을 적용시켜 주세요.
+7) PC2에 VLAN 50을 적용시켜 주세요.
 
-
-10) PC5,PC6에 VLAN 50을 적용시켜 주세요.
+8) PC3에 VLAN 10을 적용시켜 주세요.
+9) PC4에 VLAN 20을 적용시켜 주세요.
+10) PC5에 VLAN 30을 적용시켜 주세요.
 
 
 
 ------Inter-VLAN------
 1)vlan을 적용 할 때 vlan number를 사용하여 inter-vlan을 생성합니다.
 ex ) vlan number : 10 , int g0/0.10
+
+
+
+------VTP------
+1) SW0과 SW1에 VTP 설정을 진행합니다.
+2) VTP domain은 nefus.kr로 설정합니다. 
+3) VTP password는 1234로 설정합니다.
+4) VTP mode는 SW0은 Client , SW1은 Server로 설정합니다.
 
 
 
@@ -77,33 +86,58 @@ ex ) vlan number : 10 , int g0/0.10
 5) 라우터에서 Radius Server의 이름은 Radius로 설정합니다.
 
 
-6) username은 Sunrin으로 설정합니다. / password는 Sunrin으로 설정합니다.
+6) username은 sun으로 설정합니다. / password는 nus으로 설정합니다.
 7) R3에서 console 접속시 username과 password를 입력 했을 때 진입하도록 설정합니다.
 
 
+
+
+------DNS------
+1) Server0에서 DNS설정을 진행합니다.
+2) Domain은 teamlog.kr로 설정합니다. 
+3) Address는 Server0의 IP로 설정합니다.
+4) Type은 A Record로 설정합니다.
+
+
+
+
+------HTTP & HTTPS------
+1) Server0에서 HTTP , HTTPS설정을 ON으로 설정합니다.
+
+
+
 ------Tunneling------
-1) R0과 R5 사이의 tunneling을 생성하여 PC1에 해당하는 네트워크와 PC2에 해당하는 네트워크와 Server0 , Server1 , pc0에 해당하는 네트워크 끼리 tunneling 되게 설정해주세요.
-2) Tunneling에서 사용하는 네트워크의 주소는 200.0.0.0/30입니다.
+1) R0과 R2 사이의 tunneling을 생성하여 PC1 , Server0과 PC2에 해당하는 네트워크와 PC6 , PC7에 해당하는 네트워크끼리 tunneling 되게 설정해주세요.
+2) Tunneling에서 사용하는 네트워크의 주소는 100.0.0.0/30입니다.
 3) IP는 토폴로지에 주어진대로 설정해주세요.
-4) R0의 내부 망과 R5의 내부망이 tunnel을 통해 통신 할 수 있도록 static routing 설정을 진행해주세요.
+4) R0의 내부 망과 R2의 내부망이 tunnel을 통해 통신 할 수 있도록 static routing 설정을 진행해주세요.
 
 
 
 
 ------Port-Security------
-1) SW1에서 Port-Security 설정을 진행합니다.
-2) SW0 , Server0 , Server1 , PC0의 Mac주소 이외의 다른 주소가 연결된다면 Shutdown 되도록 설정합니다.
-3) SW0 , Server0 , Server1 , PC0의 외의 다른 장비의 접속을 막기 위해 최대 접속 가능 기기 수를 4대로 설정합니다.
+1) SW3에서 Port-Security 설정을 진행합니다.
+2) SW4 , PC6 , PC7의 Mac주소 이외의 다른 주소가 연결된다면 Shutdown 되도록 설정합니다.
+3) SW4 , PC6 , PC7의 외의 다른 장비의 접속을 막기 위해 최대 접속 가능 기기 수를 3대로 설정합니다.
 
 
 
 ------PPP------
-1) R5와 R3간의 PPP 설정을 진행합니다.
-2) 보안 방식은 PAP 방식을 이용하여 진행합니다.
+1) R0과 R1간의 PPP 설정을 진행합니다.
+2) 보안 방식은 CHAP 방식을 이용하여 진행합니다.
 
-3) R5의 username은 R3 , password는 home으로 설정합니다. 
-4) R3의 username은 R5 , password는 emoh으로 설정합니다.
+3) R0의 username은 R1 , password는 1234으로 설정합니다. 
+4) R1의 username은 R0 , password는 1234으로 설정합니다.
 
 
 
 ------ACL------
+1) R2에서 ACL 설정을 진행합니다.
+
+2) 192.168.2.0 네트워크 대역대는 오로지 192.168.0.0 대역대와 192.168.1.0 대역대만 통신 가능하게 설정해 주세요.
+3) 그 외의 대역대는 통신이 안되게 설정해 주세요.
+4) 위의 2가지 조건 모두 acl number 101을 사용해주세요. 
+
+5) 30.0.0.0 / 40.0.0.0 / 50.0.0.0 대역대의 네트워크에서 DNS의 사용을 금지해주세요.
+6) DNS를 제외한 나머지 설정들은 정상적으로 작동해야합니다. 
+7) 위의 2가지 조던 모두 acl number 100을 사용해주세요.  
