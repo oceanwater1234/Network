@@ -1,0 +1,135 @@
+------etc------
+1) PC와 서버를 제외한 모든 display 이름과 hostname을 일치시켜 주세요.
+
+
+
+------IP------
+1) 서버와 PC0 , PC1 , PC2는 토폴로지에 주어진 IP로 설정해 주세요.
+2) 라우터의 IP는 토폴로지에 주어진 IP로 설정해 주세요.(작성되어 있지 않는 라우터의 주소는 해당 네트워크의 마지막 주소를 사용해주세요.)
+3) 서버와 PC의 게이트 웨이 주소는 토폴로지에 주어진 네트워크에 마지막 주소를 사용해 주세요.
+4) PC3 , PC4 , PC5 , PC6의 IP는 Server0에서 DHCP를 통해 IP를 할당해 주세요.
+
+
+
+------Routing------
+1) RIP Zone에 있는 네트워크들은 RIP로 라우팅을 진행해 주세요.
+- RIP의 버전은 2로 설정해 주세요.
+- 라우팅 테이블에 축약되지 않게 설정해 주세요.
+
+2) OSPF Zone에 있는 네트워크들은 OSPF로 라우팅을 진행해 주세요.
+- Process Number는 10으로 사용해주세요.
+
+3) EIGRP Zone에 있는 네트워크들은 EIGRP로 라우팅을 진행해 주세요.
+- 라우팅 테이블에 축약되지 않게 설정해 주세요.
+
+
+
+------DHCP------
+1. Server0 에서 DHCP 설정을 진행합니다.
+
+2. PC3의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Discord로 설정해줍니다.
+- DNS 서버의 주소는 
+- Default Gateway는 123.123.123.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+- Start IP Address는 PC1의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+3. PC4의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Email로 설정해줍니다.
+- Default Gateway는 123.123.124.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+- Start IP Address는 PC2의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+4. PC5와 PC6의 IP를 할당할 DHCP를 설정해 줍니다.
+- Pool Name을 Telegram로 설정해줍니다.
+- Default Gateway는 123.123.125.0/24 네트워크에서 사용가능한 마지막 주소를 작성해줍니다.
+- Start IP Address는 PC3의 토폴로지에 주어진 IP를 사용해 주세요.
+- DHCP로 최대 사용 할 수 있는 User의 수는 1로 설정해 주세요.
+
+
+
+------VLAN------
+1) SW2에서 VLAN 10 , Name instagram을 생성합니다.
+2) SW2에서 VLAN 20 , Name Facebook을 생성합니다.
+
+3) SW3에서 VLAN 30 , Name Discord를 생성합니다.
+4) SW3에서 VLAN 40 , Name Email를 생성합니다.
+5) SW3에서 VLAN 50 , Name Telegram를 생성합니다.
+
+6) PC1에 VLAN 10을 적용시켜 주세요.
+7) PC2에 VLAN 20을 적용시켜 주세요.
+8) PC3에 VLAN 30을 적용시켜 주세요.
+9) PC4에 VLAN 40을 적용시켜 주세요.
+
+
+10) PC5,PC6에 VLAN 50을 적용시켜 주세요.
+
+
+
+------Inter-VLAN------
+1)vlan을 적용 할 때 vlan number를 사용하여 inter-vlan을 생성합니다.
+ex ) vlan number : 10 , int g0/0.10
+
+
+
+------VTP------
+1) SW3 , SW4, SW5 , SW6에서 VTP 설정을 진행합니다.
+2) vtp domain은 cisco.com로 설정합니다.
+3) vtp password는 1234로 설정합니다.
+4) vtp mode는 SW3을 server로 설정하고 나머지 스위치는 client로 설정해줍니다.
+
+
+
+------AAA------
+1) Server0에서 Radius를 만들어 줍니다. / aaa서버의 적용은 R1에서 진행합니다.
+2) Client Name은 R1로 설정해주세요.
+3) Client IP는 R1에서 Server0에 가까운 인터페이스의 주소로 설정합니다.
+4) Secret은 1R로 설정해주세요.
+5) 라우터에서 Radius Server의 이름은 Radius로 설정합니다.
+
+
+6) username은 Sunrin으로 설정합니다. / password는 Sunrin으로 설정합니다.
+7) R3에서 console 접속시 username과 password를 입력 했을 때 진입하도록 설정합니다.
+
+
+
+------Frame-Relay------
+ 1. Cloude0에서 PVC를 생성하고 아래의 설명을 보고 DLCI를 부여하세요.
+- 출발지 R2 도착지 R3 / DLCI : 203 , Name : 203
+- 출발지 R2 도착지 R4 / DLCI : 204 , Name : 204
+
+- 출발지 R3 도착지 R2 / DLCI : 302 , Name : 302
+- 출발지 R3 도착지 R4 / DLCI : 304 , Name : 304
+
+- 출발지 R4 도착지 R2 / DLCI : 402 , Name : 402
+- 출발지 R4 도착지 R3 / DLCI : 403 , Name : 403
+
+2. Point-to-Point 방식을 사용하여 Frame-Relay를 구성하세요.
+- 주어진 IP로 가상 인터페이스를 생성하세요.
+- ex) IP : 10.0.10.1 , s0/0/0.1
+- ex) IP : 10.0.20.2 , s0/0/0.2
+
+
+
+------Tunneling------
+1) R0과 R5 사이의 tunneling을 생성하여 PC1에 해당하는 네트워크와 PC2에 해당하는 네트워크와 Server0 , Server1 , pc0에 해당하는 네트워크 끼리 tunneling 되게 설정해주세요.
+2) Tunneling에서 사용하는 네트워크의 주소는 200.0.0.0/30입니다.
+3) IP는 토폴로지에 주어진대로 설정해주세요.
+4) R0의 내부 망과 R5의 내부망이 tunnel을 통해 통신 할 수 있도록 static routing 설정을 진행해주세요.
+
+
+
+
+------Port-Security------
+1) SW1에서 Port-Security 설정을 진행합니다.
+2) SW0 , Server0 , Server1 , PC0의 Mac주소 이외의 다른 주소가 연결된다면 Shutdown 되도록 설정합니다.
+3) SW0 , Server0 , Server1 , PC0의 외의 다른 장비의 접속을 막기 위해 최대 접속 가능 기기 수를 4대로 설정합니다.
+
+
+
+------PPP------
+1) R5와 R3간의 PPP 설정을 진행합니다.
+2) 보안 방식은 PAP 방식을 이용하여 진행합니다.
+
+3) R5의 username은 R3 , password는 home으로 설정합니다. 
+4) R3의 username은 R5 , password는 emoh으로 설정합니다.
